@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Repositories\ContactRepository;
+use App\Repositories\ContactRepositoryInterface;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,7 +12,7 @@ class ContactController extends Controller
 {
     protected $contacts;
 
-    public function __construct(ContactRepository $contacts)
+    public function __construct(ContactRepositoryInterface $contacts)
     {
         $this->contacts = $contacts;
     }

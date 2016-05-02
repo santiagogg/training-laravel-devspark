@@ -11,7 +11,7 @@ namespace App\Repositories;
 
 use App\Contact;
 
-class ContactRepository
+class ContactRepository implements ContactRepositoryInterface
 {
     public function all()
     {
