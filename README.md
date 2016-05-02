@@ -49,7 +49,9 @@ Para correr los seeders
 	php artisan db:seed 
 
 
+Para crear un controlador
 
+	php artisan make:controller --resource ContactController
 
 
 
