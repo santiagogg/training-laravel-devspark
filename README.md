@@ -32,17 +32,21 @@ Ya tenes una aplicación laravel corriendo en tu servidor.
 
 Para poder probar nuestra aplicación vamos a generar algunos datos para el modelo User.
 
+Para crear una migración
+
+	php artisan make:migration create_contacts_table
+
 para correr las migraciones por primera vez:
 
 	php artisan migrate
 
 Para crear un seeder
 
-	php artisan make:seeder
+	php artisan make:seeder ContactsTableSeeder
 
 Para correr los seeders
 
-	php artisan db:seed
+	php artisan db:seed 
 
 
 
