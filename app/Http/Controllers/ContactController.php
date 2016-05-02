@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Repositories\ContactRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return \App\Contact::all();
+        $contactsRepo = new ContactRepository();
+        $contacts = $contactsRepo->all();
+
+        return $contacts;
     }
 
 
@@ -40,7 +44,9 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        return \App\Contact::findOrFail($id);
+        $contactsRepo = new ContactRepository();
+        $contact = $contactsRepo->find($id);
+        return $contact;
     }
 
     /**
