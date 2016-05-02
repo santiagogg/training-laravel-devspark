@@ -9,16 +9,8 @@
 namespace App\Repositories;
 
 
-use App\Contact;
 
-class ContactRepository implements ContactRepositoryInterface
+class ContactRepository extends BaseRepository implements ContactRepositoryInterface
 {
-    public function all()
-    {
-        return Contact::all();
-    }
-    public function find($id)
-    {
-        return Contact::findOrFail($id);
-    }
+    protected $modelName = 'App\Contact';
 }
