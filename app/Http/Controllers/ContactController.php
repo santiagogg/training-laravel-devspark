@@ -10,6 +10,13 @@ use App\Http\Requests;
 
 class ContactController extends Controller
 {
+    protected $contacts;
+
+    public function __construct(ContactRepository $contacts)
+    {
+        $this->contacts = $contacts;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +24,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contactsRepo = new ContactRepository();
-        $contacts = $contactsRepo->all();
+
+        $contacts = $this->contacts->all();
 
         return $contacts;
     }
@@ -44,8 +51,7 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        $contactsRepo = new ContactRepository();
-        $contact = $contactsRepo->find($id);
+        $contact = $this->contacts->find($id);
         return $contact;
     }
 
