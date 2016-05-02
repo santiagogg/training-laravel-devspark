@@ -40,7 +40,7 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        return \App\Contact::findOrFail($id);
     }
 
     /**
