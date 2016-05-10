@@ -1,36 +1,43 @@
-# training-laravel-devspark
-Esto repositorio contiene la presentación y el código utilizado en el training.
+#[fit] training laravel devspark
+*Esto repositorio contiene la presentación y el código utilizado en el training.*
 
-# Intro
+---
+
+#[fit]  Intro
 *Dami*
 
 Breve introducción a Laravel , MVC y composer.
 
+---
 
-#Practico 
+#[fit] Practico
 *Primera parte - Pato*
 
+---
 
+###[fit] 1. Instalación
 
-### 1. Instalación
 Una vez instalado composer y el instalador de laravel podemos correr en consola el siguiente comando para crear un nuevo proyecto.
 
 	laravel new training
 
-###
+---
+
 Una vez instalado el proyecto corremos el siguiente comando para instalar las dependencias
 
 	composer update
-
+---
 Ya podemos ver el sitio funcionando. Sino querés configurar los hosts podes ver el sitio en tu local host de esta manera.
 
 	php artisan serve
 
 Ya tenes una aplicación laravel corriendo en tu servidor.
 
-### 2. Migrations / Seeds / Model Factories 
+---
 
-Para poder probar nuestra aplicación vamos a generar algunos datos para el modelo User.
+###[fit] 2. Migrations / Seeds / Model Factories
+
+Para poder probar nuestra aplicación vamos a generar algunos datos para el modelo Contact.
 
 Para crear una migración
 
@@ -48,19 +55,19 @@ Para correr los seeders
 
 	php artisan db:seed 
 
-
 Para crear un controlador
 
 	php artisan make:controller --resource ContactController
 
+---
 
-
-# Interfaces and Repositorios
+#[fit] Interfaces y Repositorios
 
 *practico segunda parte Santi*
 
+---
 
-## Ejemplo de Controlador
+##[fit]  Ejemplo de Controlador
 
 	class ContactsController extends BaseController
 	{
@@ -71,7 +78,9 @@ Para crear un controlador
 		}
 	}
 
-## No muy buena idea 
+---
+
+##[fit] No muy buena idea
 
 1. Codigo muy acoplado
 2. Dependiente de Eloquent
@@ -80,15 +89,18 @@ Para crear un controlador
 5. Mantenimiento
 6. Etc.
 
+---
 
-## Repositorios
+##[fit] Repositorios
 
 * Actuan como una capa de servicio entre la aplicación y la base de datos.
 * Por lo cual no interactuamos directamente con los modelos
 * Se encapsula el comportamiento
 * Se puede cambiar facilmente la capa de base de datos
 
-## Ejemplo de Repositorio
+---
+
+##[fit] Ejemplo de Repositorio
 
 	Class ContactRepository
 	{
@@ -102,7 +114,9 @@ Para crear un controlador
 		}
 	}	
 
-## Esta idea está un poco mejor
+---
+
+##[fit] Esta idea está un poco mejor
 	
 	class ContactsController extends BaseController
 	{
@@ -114,7 +128,9 @@ Para crear un controlador
 		}
 	}
 
-## Mmmm, Podría mejorarse...
+---
+
+##[fit] Mmmm, Podría mejorarse...
 
 * Fuertemente acoplado a un repo especifico
 * Hay que evitar hacer new lo máximo posible
@@ -125,21 +141,26 @@ Para crear un controlador
 
 * De esta manera pasamos la dependencia ( el servicio) al objeto.
 
+---
 
-## todavía no se entiende?
+##[fit] todavía no se entiende?
 
 * #### En vez  de crear la clase dentro del objeto con new ContactRepository, vamos a inyectarlo al constructor.
 
 * Mucho mas desacoplado
 * Mucho más mantenible
 
-## Interfaces
+---
+
+##[fit] Interfaces
 * Siempre que se pueda codificá pensando en contratos y no en la implementación.
 * Representa Qué hace una clase y no el Cómo
 * Las calses que implementan una interface deben proveer una implementación de sus metodos.
 	* Codigo más desacoplado.
 
-## Ejemplo de Interface
+---
+
+##[fit] Ejemplo de Interface
 
 	interface ContactInterface
 	{
@@ -159,7 +180,9 @@ Para crear un controlador
 		}
 	}
 
-## Ejemplo de Inyección de dependencias
+---
+
+##[fit] Ejemplo de Inyección de dependencias
 
 	class ContactsController extends BaseController
 	{
@@ -170,14 +193,17 @@ Para crear un controlador
 		}
 	}
 
+---
+
 ## Pero Cómo... ?
 
-### Laravel is awesome...
+##[fit] Laravel is awesome...
 
 	App::bind('ContactInterface','ContactRepository');
 
+---
 
-## Mejorando la idea... 
+##[fit] Mejorando la idea...
 
 	class ContactsController extends BaseController
 	{
@@ -193,6 +219,8 @@ Para crear un controlador
 		}
 	}
 
+---
+
 ## Contact Interface
 
 	interface ContactInterface
@@ -205,6 +233,8 @@ Para crear un controlador
 		public function delete($id);
 		public function findBy($field, $value);
 	}
+
+---
 
 ## User Interface
 
@@ -219,6 +249,8 @@ Para crear un controlador
 		public function findBy($field, $value);
 	}
 
+---
+
 ## Job Interface
 	
 	interface JobInterface
@@ -232,11 +264,15 @@ Para crear un controlador
 		public function findBy($field, $value);
 	}
 
+---
+
 ## Foo Interface
 
-* Pará! , estamos repetiendo una y otra vez lo mismo...
+*Pará! , estamos repetiendo una y otra vez lo mismo...*
 
-## Mejorando la idea
+---
+
+##[fit] Mejorando la idea...
 
 	interface BaseInterface
 	{
@@ -249,6 +285,8 @@ Para crear un controlador
 		public function findBy($field, $value);
 	}
 
+---
+
 ## Extend the BaseInterface
 	
 	interface ContactInterface extends BaseInterface {}
@@ -257,7 +295,9 @@ Para crear un controlador
 	Interface FooInterface extends BaseInterface {}
 
 
-## La mejor idea
+---
+
+##[fit] La mejor idea
 
 	class BaseRepository
 	{
@@ -279,7 +319,9 @@ Para crear un controlador
 		}
 	}
 
-## Mucho más limpio
+---
+
+##[fit] Mucho más limpio
 
 	class ContactRepository extends BaseRepository
 	{
@@ -290,7 +332,9 @@ Para crear un controlador
 		protected $modelName = 'User';
 	}
 
-## Podemos hacer lo mismo para los controladores.
+---
+
+##[fit] Podemos hacer lo mismo para los controladores.
 
 	class BaseAdminResoureceController extends AdminController
 	{
@@ -317,6 +361,8 @@ Para crear un controlador
 		}
 	}
 
-## GRACIAS
+---
+
+##[fit] GRACIAS
 	
 ***PREGUNTAS??***
