@@ -8,6 +8,15 @@
 
 Breve introducción a Laravel , MVC y composer.
 
+Routing / Middleware - routes.php
+Model / Eloquent
+View / Blade Template
+Controller
+
+The Basics
+
+Composer
+
 ---
 
 #[fit] Practico
@@ -21,6 +30,8 @@ Una vez instalado composer y el instalador de laravel podemos correr en consola 
 
 	laravel new training
 
+
+    composer install laravel/laravel
 ---
 
 Una vez instalado el proyecto corremos el siguiente comando para instalar las dependencias
